@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+    <View
+        android:id="@+id/top_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/foreground_color"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/inputHorizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/foreground_color"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/resultDisplayHorizontalScrollView"
+        >
+
+        <EditText
+            android:id="@+id/input"
+            style="@style/RobotoFontCondensedMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:autofillHints="false"
+            android:background="?attr/foreground_color"
+            android:inputType="textNoSuggestions"
+            android:maxLength="10000"
+            android:paddingHorizontal="10dp"
+            android:singleLine="true"
+            android:text=""
+            android:textAlignment="textEnd"
+            android:textColor="?attr/text_color"
+            android:textCursorDrawable="@drawable/custom_cursor"
+            android:textSize="38sp"
+            tools:ignore="RtlCompat" />
+
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/resultDisplayHorizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/foreground_color"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/resultDisplay"
+                style="@style/RobotoFontCondensedMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/foreground_color"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="4dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text=""
+                android:textAlignment="textEnd"
+                android:textColor="?attr/text_second_color"
+                android:textIsSelectable="true"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+            <TableLayout android:clipChildren="false" android:clipToPadding="false"
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="16dp"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintTop_toBottomOf="@+id/guideline2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <!-- Scientific Mode Row 1: Rad/Deg, √, π, x^y -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:id="@+id/scientistModeRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/degreeButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/degreeDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="degreeButton"
+                        android:text="@string/degree"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/squareButton"
+                        android:contentDescription="@string/squareDesc"
+                        style="@style/CalculatorButton.Function"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="squareButton"
+                        android:text="@string/square"
+                        android:textSize="22sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/piButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/piDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="piButton"
+                        android:text="@string/pi"
+                        android:textSize="22sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareImageButton
+                        android:id="@+id/exponentButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/exponentDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="exponentButton"
+                        app:srcCompat="@drawable/exponent" />
+
+                </TableRow>
+
+                <!-- Scientific Mode Row 2: sin, cos, tan, ! -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:id="@+id/scientistModeRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/sineButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/sineDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="sineButton"
+                        android:text="@string/sine"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/cosineButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/cosineDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="cosineButton"
+                        android:text="@string/cosine"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/tangentButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/tangentDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="tangentButton"
+                        android:text="@string/tangent"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/factorialButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/factorialDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="factorialButton"
+                        android:text="@string/factorial"
+                        android:textSize="22sp" />
+
+                </TableRow>
+
+                <!-- Scientific Mode Row 3: inv, e, ln, log -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:id="@+id/scientistModeRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/invButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/invertDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="invButton"
+                        android:text="@string/invert"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/eButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/eDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="eButton"
+                        android:text="@string/e"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/naturalLogarithmButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/naturalLogarithmDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="naturalLogarithmButton"
+                        android:text="@string/naturalLogarithm"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/logarithmButton"
+                        style="@style/CalculatorButton.Function"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:contentDescription="@string/logarithmDesc"
+                        android:onClick="logarithmButton"
+                        android:text="@string/logarithm"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <!-- Scientific Mode Row 4: log₂, x², exp, collapse -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:id="@+id/scientistModeRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/log2Button"
+                        style="@style/CalculatorButton.Function"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:contentDescription="@string/log2Desc"
+                        android:onClick="log2Button"
+                        android:text="@string/logtwo"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/squareNumberButton"
+                        style="@style/CalculatorButton.Function"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="squareNumberButton"
+                        android:text="x\u00B2"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/expButton"
+                        style="@style/CalculatorButton.Function"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="expButton"
+                        android:text="e\u02E3"
+                        android:textSize="20sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareImageButton
+                        android:id="@+id/scientistModeSwitchButton"
+                        style="@style/CalculatorButton.Function"
+                        android:contentDescription="@string/scientificModeSwitchDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="scientistModeSwitchButton"
+                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_up_24" />
+
+                </TableRow>
+
+                <!-- Standard Keypad Row 1: C, backspace, %, ÷ -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/clearButton"
+                        style="@style/CalculatorButton"
+                        android:contentDescription="@string/clearDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_clear_color"
+                        android:textColor="#F54336"
+                        android:onClick="clearButton"
+                        android:text="@string/clear"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/leftParenthesisButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="leftParenthesisButton"
+                        android:text="@string/leftParenthesis"
+                        android:textSize="28sp"
+                        android:visibility="gone" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/rightParenthesisButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="rightParenthesisButton"
+                        android:text="@string/rightParenthesis"
+                        android:textSize="28sp"
+                        android:visibility="gone" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareImageButton
+                        android:id="@+id/backspaceButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/backspaceDesc"
+                        android:onClick="backspaceButton"
+                        android:paddingEnd="5dp"
+                        app:tint="#F54336"
+                        app:srcCompat="@drawable/backspace" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/divideBy100Button"
+                        style="@style/CalculatorButton"
+                        android:contentDescription="@string/percentDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="percent"
+                        android:text="@string/percent"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/divideButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="divideButton"
+                        android:text="@string/divide"
+                        android:textSize="32sp" />
+                </TableRow>
+
+                <!-- Standard Keypad Row 2: 7, 8, 9, × -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/sevenButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/seven"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/eightButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/eight"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/nineButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/nine"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/multiplyButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="multiplyButton"
+                        android:text="@string/multiply"
+                        android:textSize="32sp" />
+                </TableRow>
+
+                <!-- Standard Keypad Row 3: 4, 5, 6, − -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/fourButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/four"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/fiveButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/five"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/sixButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/six"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/subtractButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="subtractButton"
+                        android:text="@string/subtract"
+                        android:textSize="32sp" />
+                </TableRow>
+
+                <!-- Standard Keypad Row 4: 1, 2, 3, + -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/oneButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/one"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/twoButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/two"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/threeButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/three"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/addButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_symbol_color"
+                        android:onClick="addButton"
+                        android:text="@string/add"
+                        android:textSize="32sp" />
+                </TableRow>
+
+                <!-- Standard Keypad Row 5: (), 0, ., = -->
+                <TableRow android:clipChildren="false" android:clipToPadding="false"
+                    android:id="@+id/delRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/parenthesesButton"
+                        style="@style/CalculatorButton"
+                        android:contentDescription="@string/parenthesesDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="parenthesesButton"
+                        android:text="@string/parentheses"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/zeroButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="keyDigitPadMappingToDisplay"
+                        android:text="@string/zero"
+                        android:textSize="28sp" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareImageButton
+                        android:id="@+id/pointButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/pointDesc"
+                        android:onClick="pointButton" />
+
+                    <com.zfolderstudio.zerocalc.views.SquareButton
+                        android:id="@+id/equalsButton"
+                        style="@style/CalculatorButton"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:backgroundTint="?attr/button_equals_color"
+                        android:onClick="equalsButton"
+                        android:text="@string/equals"
+                        android:textSize="32sp" />
+                </TableRow>
+            </TableLayout>
+
+        <!-- Transparent overlay to close drawer when clicked outside -->
+        <View
+            android:id="@+id/historyDrawerOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#00000000"
+            android:visibility="gone"
+            android:elevation="9dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/historyDrawer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/background_color"
+            android:visibility="invisible"
+            android:elevation="10dp"
+            app:layout_constraintWidth_percent="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tableLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_recylcle_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="?attr/background_color"
+                android:paddingEnd="8dp"
+                android:clipToPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/clearHistoryButton"/>
+
+            <TextView
+                android:id="@+id/no_history_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/no_history_available"
+                android:textSize="18sp"
+                android:textColor="?attr/text_color"
+                android:visibility="gone"
+                android:gravity="center"
+                android:background="?attr/background_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/clearHistoryButton"/>
+
+            <Button
+                android:id="@+id/clearHistoryButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Clear history"
+                android:textColor="?attr/text_color"
+                android:backgroundTint="?attr/button_color"
+                android:layout_marginBottom="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:textAllCaps="false"
+                android:stateListAnimator="@animator/button_click_anim"
+                android:outlineSpotShadowColor="?attr/text_color"
+                android:outlineAmbientShadowColor="?attr/text_color"
+                app:rippleColor="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="?attr/separator_color"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+
+    <!-- Scientific toggle button (next to menu button) -->
+    <com.zfolderstudio.zerocalc.views.SquareImageButton
+        android:id="@+id/scientificToggleButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/circle"
+        android:stateListAnimator="@animator/button_click_anim"
+        android:outlineSpotShadowColor="?attr/text_color"
+        android:outlineAmbientShadowColor="?attr/text_color"
+        app:srcCompat="@drawable/science"
+        android:scaleType="center"
+        app:tint="?attr/text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.zfolderstudio.zerocalc.views.SquareImageButton android:visibility="gone" android:id="@+id/menuButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/circle"
+        android:stateListAnimator="@animator/button_click_anim"
+        android:outlineSpotShadowColor="?attr/text_color"
+        android:outlineAmbientShadowColor="?attr/text_color"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24"
+        android:scaleType="center"
+        app:tint="?attr/text_color"
+        android:onClick="openAppMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.zfolderstudio.zerocalc.views.SquareImageButton
+        android:id="@+id/historyButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/circle"
+        android:stateListAnimator="@animator/button_click_anim"
+        android:outlineSpotShadowColor="?attr/text_color"
+        android:outlineAmbientShadowColor="?attr/text_color"
+        app:srcCompat="@drawable/history"
+        android:scaleType="center"
+        app:tint="?attr/text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

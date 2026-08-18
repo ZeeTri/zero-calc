@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <set>
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="100"
+                android:valueTo="0.95"
+                android:valueType="floatType"/>
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="100"
+                android:valueTo="0.95"
+                android:valueType="floatType"/>
+            <!-- Increase Z translation to make the shadow (glow) expand -->
+            <objectAnimator
+                android:propertyName="translationZ"
+                android:duration="100"
+                android:valueTo="16dp"
+                android:valueType="floatType"/>
+            <!-- Slight alpha drop makes it look like it's lighting up from behind -->
+            <objectAnimator
+                android:propertyName="alpha"
+                android:duration="100"
+                android:valueTo="0.85"
+                android:valueType="floatType"/>
+        </set>
+    </item>
+    <item>
+        <set>
+            <!-- Spring back effect -->
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="250"
+                android:valueTo="1.0"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/overshoot" />
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:duration="250"
+                android:valueTo="1.0"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/overshoot" />
+            <objectAnimator
+                android:propertyName="translationZ"
+                android:duration="250"
+                android:valueTo="0dp"
+                android:valueType="floatType"/>
+            <objectAnimator
+                android:propertyName="alpha"
+                android:duration="200"
+                android:valueTo="1.0"
+                android:valueType="floatType"/>
+        </set>
+    </item>
+</selector>
